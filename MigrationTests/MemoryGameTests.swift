@@ -53,12 +53,10 @@ class MemoryGameTests: XCTestCase {
         XCTAssertEqual(card!.isFaceUp, !gameModel!.cards.first!.isFaceUp)
     }
     
-    func testIndexOfCard() throws {
-        let card = gameModel!.cards.last
-        XCTAssertNotNil(card)
-        
-        let index = gameModel!.index(of: card!)
-        XCTAssertEqual(index, emojis.count * 2 - 1)
+    func testIndexOfTheOneAndOnlyFaceUpCard() throws {
+        let index = 2
+        gameModel?.indexOfTheOneAndOnlyFaceUpCard = index
+        XCTAssertEqual(index, gameModel?.indexOfTheOneAndOnlyFaceUpCard)
     }
     
     func testInitializePerformance() throws {
@@ -78,10 +76,11 @@ class MemoryGameTests: XCTestCase {
         }
     }
     
-    func testIndexOfCardPerformance() throws {
+    func testIndexOfTheOneAndOnlyFaceUpCardPerformance() throws {
         self.measure {
-            gameModel?.cards.forEach { card in
-                let _ = gameModel!.index(of: card)
+            gameModel?.cards.indices.forEach {
+                gameModel?.indexOfTheOneAndOnlyFaceUpCard = $0
+                let _ = gameModel?.indexOfTheOneAndOnlyFaceUpCard
             }
         }
     }
