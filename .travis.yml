@@ -1,0 +1,9 @@
+# references:
+# * https://www.objc.io/issues/6-build-tools/travis-ci/
+# * https://github.com/supermarin/xcpretty#usage
+
+language: objective-c
+xcode_project: Migration.xcodeproj # path to your xcodeproj folder
+xcode_scheme: MigrationTests
+xcode_scheme: MigrationUITests
+xcode_destination: platform=iOS Simulator,OS=11.5,name=iPhone 11
