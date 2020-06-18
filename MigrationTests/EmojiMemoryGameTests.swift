@@ -30,7 +30,7 @@ class EmojiMemoryGameTests: XCTestCase {
     }
     
     func testCards() throws {
-        let emojis = ["🐷", "🐍", "👻"]
+        let emojis = ["👻", "👽", "🐍"]
         XCTAssertEqual(emojis.count * 2, viewModel!.cards.count)
         
         var bufferCards = viewModel!.cards
