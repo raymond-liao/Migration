@@ -1,8 +1,29 @@
-os: osx
+language: objective-c
 osx_image: xcode11.5
-language: swift
-xcode_project: Migration.xcodeproj # path to your xcodeproj folder
-xcode_scheme:
-  - MigrationTests
-  - MigrationUITests
-xcode_destination: platform=iOS Simulator,OS=13.5,name=iPhone X
+
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+    - LANG=en_US.UTF-8
+
+notifications:
+  email: false
+
+addons:
+  homebrew:
+    packages:
+    - curl # Fix the codecov upload issue
+
+before_install:
+    - env
+    - locale
+    - xcodebuild -version
+    - xcodebuild -showsdks
+
+script:
+    - set -o pipefail
+    - echo Run the tests
+    - xcodebuild test -project Migration.xcodeproj -scheme 'Migration' -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro' -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty -c
+
+after_success:
+    - echo Run the tests succeed
