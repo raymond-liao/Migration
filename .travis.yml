@@ -1,5 +1,6 @@
 os: osx
+osx_image: xcode11.6
 language: objective-c
 xcode_project: Migration.xcodeproj # path to your xcodeproj folder
-xcode_scheme: MigrationTests
+xcode_scheme: MigrationTests,MigrationUITests
 xcode_destination: platform=iOS Simulator,OS=13.5,name=iPhone X
